@@ -18,7 +18,7 @@
           <div class="col-md-7">
             <%=
               f.text_field :name,
-              class: "form-control #{"is-invalid" if resource.errors.messages[:names].present? } samuraimart-login-input",
+              class: "form-control #{"is-invalid" if resource.errors.messages[:name].present? } samuraimart-login-input",
               autofocus: "true",
               required: "",
               autocomplete: "name",
@@ -26,9 +26,9 @@
             %>
             
             <% if resource.errors.messages[:name].present? %>
-              <sapn class="samuraimart-error-message">
+              <span class="samuraimart-error-message">
                 <strong><%= resource.errors.full_messages_for(:name).first %></strong>
-              </sapn>
+              </span>
             <% end %>
           </div>
         </div>

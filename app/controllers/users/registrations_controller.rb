@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, onle: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   
   # GET /resource/sign_up
@@ -32,7 +32,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def destroy
   #   super
   # end
-
+  def verify
+  end
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
@@ -41,7 +42,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-protected
+  def after_sign_in_path_for(user)
+     products_path
+  end
+ 
+  def after_sign_out_path_for(user)
+     root_path
+  end
+  protected
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -62,6 +70,9 @@ protected
   # end
 
   # The path used after sign up for inactive accounts.
+  def after_inactive_sign_up_path_for(resource)
+    verify_path
+  end
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
