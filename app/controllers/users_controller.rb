@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   end
   
   def favorite
+    @test = "test"
     @favorites = @user.likees(Product)
   end
   
