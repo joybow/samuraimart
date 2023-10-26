@@ -61,6 +61,8 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :tag => 'v2.19.0
 gem 'acts_as_shopping_cart'
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'activerecord-import'
+  gem 'payjp'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

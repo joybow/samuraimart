@@ -1,11 +1,12 @@
 class Dashboard::CategoriesController < ApplicationController
-    before_action :authenticate_admin!, except: index
+    before_action :authenticate_admin!, except: :index
     before_action :set_category, only: %w[show edit update destroy]
     layout "dashboard/dashboard"
     
     def index
         @categories = Category.display_list(params[:page])
         @category = Category.new
+        @major_categories = MajorCategory.all
     end
     
     def show
@@ -18,6 +19,7 @@ class Dashboard::CategoriesController < ApplicationController
     end
     
     def edit
+        @major_categories = MajorCategory.all
     end
     
     def update
@@ -32,7 +34,7 @@ class Dashboard::CategoriesController < ApplicationController
         redirect_to dashboard_categories_path
     end
     
-    def destory
+    def destroy
         @category.destroy
         redirect_to dashboard_categories_path
     end
@@ -43,6 +45,6 @@ class Dashboard::CategoriesController < ApplicationController
         end
         
         def category_params
-            params.require(:category).permit(:name, :description, :major_category_name)
+            params.require(:category).permit(:name, :description, :major_category_name, :major_category_id)
         end
 end
